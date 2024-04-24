@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+body{
+   background: url(../images/bg1.jpg) no-repeat;
+   background-size: cover;
+}
+
+.dark{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.nav-register-tab .nav-link{
+    color:white;
+}
+
+#msg_box,#login_msg_box{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}

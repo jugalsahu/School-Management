@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+</head>
+
+<body>
+    <div class="dark d-flex align-items-center">
+        <div class="container w-75 h-75">
+            <div class="row">
+                <div class="col-md-3">
+                    <ul class="list-group">
+                        <li class="list-group-item fw-bold bg-warning text-center">
+                            <h5>SCHOOL MANAGEMENT 1.0</h5>
+                        </li>
+                        <li class="list-group-item p-0"><img src="./images/pic1.jpg" alt="pic" class="w-100"></li>
+                        <li class="list-group-item text-center bg-warning"><a href="#" class="text-dark fw-bold">CONTACT
+                                US</a></li>
+                    </ul>
+                </div>
+                <!--Login Register-->
+                <div class="col-md-9">
+                    <ul class="nav nav-tabs nav-register-tab">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#register" data-bs-toggle="tab">Register</a>
+                        </li>
+                        <li class="nav-item" data-bs-toggle="tab">
+                            <a class="nav-link" href="#login" data-bs-toggle="tab">Login</a>
+                        </li>
+                    </ul>
+                    <!--Tab Contacts-->
+                    <div class="tab-content py-4" id="myTabContent">
+                        <!--Register-->
+                        <div class="tab-pane active animate__animated animate__zoomIn" id="register">
+                            <form class="" id="register_form">
+
+                                <div class="input-group mb-4">
+                                    <span class="input-group-text bg-primary text-white border-0 w-25">Enter school name
+                                        here</span>
+                                    <input type="text" name="School" class="form-control border border-start-0"
+                                        id="school_name" required="required">
+                                </div>
+
+                                <div class="input-group mb-4">
+                                    <span class="input-group-text bg-primary text-white border-0 w-25">Enter tag line
+                                        here</span>
+                                    <input type="text" name="tag_line" class="form-control border border-start-0"
+                                        id="tag_line">
+                                </div>
+
+                                <div class="input-group mb-4">
+                                    <span class="input-group-text bg-primary text-white border-0 w-25">Enter Email Id
+                                        here</span>
+                                    <input type="email" name="email" class="form-control border border-start-0"
+                                        id="email_id" required="required">
+                                </div>
+
+                                <div class="input-group mb-4">
+                                    <span class="input-group-text bg-primary text-white border-0 w-25">Enter Password
+                                        here</span>
+                                    <input type="password" name="password" class="form-control border border-start-0"
+                                        id="password" required="required">
+                                </div>
+
+                                <div class="input-group mb-4">
+                                    <span class="input-group-text bg-primary text-white border-0 w-25">Enter website
+                                        name here</span>
+                                    <input type="url" name="url" class="form-control border border-start-0"
+                                        id="website_name">
+                                </div>
+
+                                <div class="input-group mb-4">
+                                    <span class="input-group-text bg-primary text-white border-0 w-25">Enter mobile
+                                        number here</span>
+                                    <input type="number" name="mobile_number" class="form-control border border-start-0"
+                                        id="mobile_number" required="required">
+                                </div>
+
+                                <div class="input-group mb-4">
+                                    <span class="input-group-text bg-primary text-white border-0 w-25">Enter phone
+                                        number here</span>
+                                    <input type="number" name="phone_number" class="form-control border border-start-0"
+                                        id="phone_number" required="required">
+                                </div>
+
+                                <div class="input-group mb-4">
+                                    <span class="input-group-text bg-primary text-white border-0 w-25">Enter Address
+                                        here</span>
+                                    <textarea name="address" id="address" class="form-control" rows="1"></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-warning fw-bold float-end px-4">Register
+                                    Now</button>
+                            </form>
+                        </div>
+                        <!--success alert-->
+                        <div class="alert alert-dismissible fade show float-start w-50 d-none" role="alert"
+                            id="msg_box">
+
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        <!--Login-->
+                        <div class="tab-pane animate__animated animate__zoomIn" id="login">
+                            <form id="login_form">
+                                <div class="input-group mb-4">
+                                    <span class="input-group-text bg-primary text-white border-0 w-25">Username</span>
+                                    <input type="email" name="username" class="form-control border border-start-0"
+                                        id="username" required="required" placeholder="youremail@gmail.com">
+                                </div>
+
+                                <div class="input-group mb-4">
+                                    <span class="input-group-text bg-primary text-white border-0 w-25">Password</span>
+                                    <input type="password" name="login_password"
+                                        class="form-control border border-start-0" id="login_password"
+                                        required="required" placeholder="password">
+                                </div>
+                                <!--success and failure alert-->
+                                <div class="alert alert-dismissible fade show float-start w-100 d-none" role="alert"
+                                    id="login_msg_box">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+
+                                <button class="btn btn-warning float-end py-2 fw-bold">Login now</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Script Links-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
