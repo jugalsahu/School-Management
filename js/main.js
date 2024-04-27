@@ -88,6 +88,7 @@ else {
                 }
                 var idb = this.result;
                 var object = idb.createObjectStore("about_school", { keyPath: "school_name" });
+                idb.createObjectStore("fee", { keyPath: "class_name" });
                 object.add(data);
             }
         }
@@ -112,6 +113,8 @@ $(() => {
             user_database.then((pending_obj) => {
                 for (var item of pending_obj) {
                     var db_name = item.name;
+                    // session storage
+                    sessionStorage.setItem("db_name",db_name);
                     var database = window.indexedDB.open(db_name, 1); // Specifying version as 1
                     database.onerror = function (event) {
                         console.error("Error opening database", event.target.error);
