@@ -41,7 +41,7 @@ $(document).ready(function () {
             var idb = event.target.result;
             var permission = idb.transaction("fee", "readwrite");
             var access = permission.objectStore("fee");
-            var fee_object_store = access.add(fee_object);
+            var fee_object_store = access.put(fee_object);
             fee_object_store.onsuccess = function () {
                 alert("success");
             };
@@ -138,6 +138,7 @@ $(document).ready(function () {
                                 course_fee[i].value = td[i].innerHTML;
                             }
                             $("#fee_modal").modal("hide");
+                            $(".set_fee").addClass("animate__animated animate__rubberBand");
                             
                         };
 
@@ -177,3 +178,159 @@ $(document).ready(function () {
         };
     });
 });
+
+// retrive class name
+
+$(document).ready(function(){
+    var db_name = sessionStorage.getItem("db_name");
+    var database = window.indexedDB.open(db_name);
+    database.onsuccess = function(event){
+        var idb = event.target.result;
+        var permission = idb.transaction("fee","readwrite");
+        var access = permission.objectStore("fee");
+        var key_name = access.getAllKeys();
+        key_name.onsuccess = function(event){
+            var keys = event.target.result;
+            for(var key_item of keys)
+            {
+                var option = document.createElement("option");
+                option.value = key_item;
+                option.innerHTML = key_item;
+                $(".class_select").append(option);
+            }
+        };
+    };
+});
+
+// upload and preview image
+
+$(document).ready(function(){
+    $(".upload_pic").on("change",function(){
+   
+        var file = this.files[0];
+        var url = URL.createObjectURL(file);
+        $(".show_pic").attr("src",url);
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function(event){
+            sessionStorage.setItem("upload_pic",event.target.result);
+        };
+      
+    });
+});
+
+// admission students
+
+$(document).ready(function(){
+    $(".Admit_btn").click(function(){
+        var date = new Date($(".dob").val());
+        var dob_day = date.getDate();
+        var dob_month = date.getMonth()+1;
+        var dob_year = date.getFullYear();
+        var dob = `${dob_day}/${dob_month}/${dob_year}`;
+        var c_date = new Date();
+        var doa_day = c_date.getDate();
+        var doa_month = c_date.getMonth()+1;
+        var doa_year = c_date.getFullYear();
+        var doa = `${doa_day}/${doa_month}/${doa_year}`;
+
+        if(sessionStorage.getItem("upload_pic") != null)
+        {
+            var admission = {
+                s_name : $(".s_name").val(),
+                f_name : $(".f_name").val(),
+                m_name : $(".m_name").val(),
+                dob:dob,
+                gender : $(".gender").val(),
+                mobile_one : $(".number_one").val(),
+                mobile_two : $(".number_two").val(),
+                class : $(".class_select").val(),
+                admit_in : $(".admit_in").val(),
+                address : $(".address").val(),
+                doa : doa,
+                pic : sessionStorage.getItem("upload_pic"),
+            };
+            sessionStorage.removeItem("upload_pic");
+            var db_name = sessionStorage.getItem("db_name");
+            var database = window.indexedDB.open(db_name);
+            database.onsuccess = function(event){
+                var idb = event.target.result;
+                var permission = idb.transaction("admission","readwrite");
+                var access = permission.objectStore("admission")
+                var check_admission = access.add(admission);
+                check_admission.onsuccess = function(){
+                    var alerts = `
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <b>Admission Success</b> <a href="admission_slip.html">Get Admission Document</a>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert">
+                    </button>
+                    </div>
+                    `;
+                    $(".admit_notice").html(alerts);
+                    adm_no();
+                };
+
+                check_admission.error = function(){
+                    var alerts = `
+                    <div class="alert alert-warnig alert-dismissible fade show" role="alert">
+                    <b>Admission Failed</b>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert">
+                    </button>
+                    </div>
+                    `;
+                    $(".admit_notice").html(alerts);
+                };
+            };
+        }
+        else{
+            alert("Please upload student pic");
+            
+        }
+    });
+});
+
+// sidebar school management
+
+$(document).ready(function(){
+    var db_name = sessionStorage.getItem("db_name");
+    document.querySelector(".school_name").innerHTML = db_name.toUpperCase();
+    var database = window.indexedDB.open(db_name);
+    database.onsuccess = function(event){
+        var idb = event.target.result;
+        var permission = idb.transaction("about_school","readwrite");
+        var access = permission.objectStore("about_school");
+        var check_data = access.get(db_name);
+        check_data.onsuccess = function(event){
+            var schol_imformation = event.target.result;
+            $(".tag_line").html(schol_imformation.tag_line);
+        }
+    };
+});
+
+// admission number
+function adm_no(){
+    var max_no = 0;
+    var db_name = sessionStorage.getItem("db_name");
+    var database = window.indexedDB.open(db_name);
+    database.onsuccess = function(event){
+        var idb = event.target.result;
+        var permission = idb.transaction("admission","readwrite");
+        var access = permission.objectStore("admission");
+        var check_data = access.getAllKeys();
+        check_data.onsuccess = function(event){
+            var keys_array = event.target.result;
+            for(var keys_item of keys_array)
+            {
+               if(keys_item>max_no)
+               {
+                    max_no = keys_item;
+               }
+            }
+            var a_no = max_no+1;
+            sessionStorage.setItem("a_no",max_no);
+            $(".a_no").html(`A/NO : ${a_no}`);
+        };
+    };
+};
+
+adm_no();

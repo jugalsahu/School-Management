@@ -12,12 +12,11 @@ else {
     $(function () {
         $("#register_form").on("submit", function () {
             var check_database = window.indexedDB.databases();
-            check_database.then(function(db_list){
-                if(db_list.length==0)
-                {
+            check_database.then(function (db_list) {
+                if (db_list.length == 0) {
                     register();
                 }
-                else{
+                else {
                     $("#msg_box1").removeClass("d-none").addClass("alert-warning")
                     $("#msg_box1 span").html(`
                     <b>Registration Failed !</b> 
@@ -25,13 +24,13 @@ else {
                     <span class="ms-4 bi bi-trash-fill" data-bs-toggle="tooltip" data-bs-placement="bottom" title="To manage another school record please delete currently used school database" id="tooltip_id"></span>
                     `);
                     $("#tooltip_id").tooltip();
-                    $("#tooltip_id").click(function(){
+                    $("#tooltip_id").click(function () {
                         $("#confirm").modal('show');
-                        $("#delete_btn").click(function(){
+                        $("#delete_btn").click(function () {
                             var all_db = window.indexedDB.databases()
-                            all_db.then(function(all_db_list){
+                            all_db.then(function (all_db_list) {
                                 var verify_delete = window.indexedDB.deleteDatabase(all_db_list[0].name);
-                                verify_delete.onsuccess = function(){
+                                verify_delete.onsuccess = function () {
                                     $("#register_form").trigger("reset");
                                     $("#msg_box1").addClass("d-none");
                                     $(".delete_modal_msg").html("");
@@ -57,7 +56,7 @@ else {
             // create database
             var database = window.indexedDB.open(school_name);
             database.onsuccess = function () {
-               
+
                 $("#msg_box").removeClass("d-none");
                 $("#msg_box").addClass("alert-success");
                 $("#msg_box span").html(`<strong>Success !</strong> Dear admin please login...`);
@@ -89,6 +88,7 @@ else {
                 var idb = this.result;
                 var object = idb.createObjectStore("about_school", { keyPath: "school_name" });
                 idb.createObjectStore("fee", { keyPath: "class_name" });
+                idb.createObjectStore("admission", { autoIncrement: true });
                 object.add(data);
             }
         }
@@ -114,7 +114,7 @@ $(() => {
                 for (var item of pending_obj) {
                     var db_name = item.name;
                     // session storage
-                    sessionStorage.setItem("db_name",db_name);
+                    sessionStorage.setItem("db_name", db_name);
                     var database = window.indexedDB.open(db_name, 1); // Specifying version as 1
                     database.onerror = function (event) {
                         console.error("Error opening database", event.target.error);
