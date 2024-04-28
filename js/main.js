@@ -83,7 +83,10 @@ else {
                     website_name: website_name,
                     mobile_number: mobile_number,
                     phone_number: phone_number,
-                    address: address
+                    address: address,
+                    school_logo : "",
+                    director_signature : "",
+                    principal_signature : "",
                 }
                 var idb = this.result;
                 var object = idb.createObjectStore("about_school", { keyPath: "school_name" });
