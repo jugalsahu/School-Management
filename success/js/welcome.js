@@ -334,3 +334,13 @@ function adm_no(){
 };
 
 adm_no();
+
+// find students
+
+$(document).ready(function(){
+    $(".find_btn").click(function(){
+        var a_no = $(".find_admission_number").val();
+        sessionStorage.setItem("a_no",a_no);
+        window.location = "admission_slip.html";
+    });
+});
