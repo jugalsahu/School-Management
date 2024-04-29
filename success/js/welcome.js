@@ -196,6 +196,12 @@ $(document).ready(function () {
                 option.innerHTML = key_item;
                 $(".class_select").append(option);
             }
+            for (var key_item of keys) {
+                var option = document.createElement("option");
+                option.value = key_item;
+                option.innerHTML = key_item;
+                $(".find-student").append(option);
+            }
         };
     };
 });
@@ -659,5 +665,14 @@ $(document).ready(function () {
                 }
             };
         }
+    });
+});
+
+// find students by class
+
+$(document).ready(function(){
+    $(".find-student").on("change",function(){
+        sessionStorage.setItem("student_class",this.value);
+        window.location = "students.html";
     });
 });
