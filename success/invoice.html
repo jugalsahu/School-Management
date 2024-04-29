@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Slip</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../node_modules/animate.css/animate.css">
+    <style>
+        .border{
+            border-color: black !important;
+        }
+    </style>
+</head>
+<body class="py-5">
+    <!--Invoice-->
+
+    <div class="w-50 mx-auto mt-5">
+        <div class="row">
+            <div class="col-md-2 border border-1 d-flex school-logo">
+                
+            </div>
+            <div class="col-md-10 border border-1 text-center">
+                <h2 class="mt-3 text-uppercase school-name"></h2>
+                <span class="text-uppercase tagline"></span>
+            </div>
+        </div>
+        <!--Student name-->
+        <div class="row">
+            <div class="col-md-3 border border-1 fw-bold text-uppercase px-3 py-2"><span>student name</span></div>
+            <div class="col-md-5 border border-1 text-uppercase px-3 py-2"><span class="s-name"></span></div>
+            <div class="col-md-2 border border-1 fw-bold text-uppercase px-3 py-2"><span>invoice no</span></div>
+            <div class="col-md-2 border border-1 text-uppercase px-3 py-2"><span class="invoice-no"></span></div>
+        </div>
+        <!--Fathers name-->
+        <div class="row">
+            <div class="col-md-3 border border-1 fw-bold text-uppercase px-3 py-2"><span>father's name</span></div>
+            <div class="col-md-4 border border-1 text-uppercase px-3 py-2"><span class="f-name"></span></div>
+            <div class="col-md-2 border border-1 fw-bold text-uppercase px-3 py-2"><span>date</span></div>
+            <div class="col-md-3 border border-1 text-uppercase px-3 py-2"><span class="invoice-date"></span></div>
+        </div>
+        <!--Class-->
+        <div class="row">
+            <div class="col-md-2 border border-1 fw-bold text-uppercase px-3 py-2"><span>class</span></div>
+            <div class="col-md-10 border border-1 text-uppercase px-3 py-2"><span class="s-class"></span></div>
+        </div>
+        <!--fee box-->
+        <div class="row">
+            <div class="col-md-7 px-3 py-2 border border-1 fw-bold text-center"></div>
+            <div class="col-md-3 px-3 py-2 border border-1 fw-bold text-center description"></div>
+            <div class="col-md-2 px-3 py-2 border border-1 fw-bold text-center fee"></div>
+        </div>
+         <!--total box-->
+         <div class="row">
+            <div class="col-md-7 px-3 py-2 border border-1 fw-bold text-center"></div>
+            <div class="col-md-3 px-3 py-2 border border-1 fw-bold text-center ">Total</div>
+            <div class="col-md-2 px-3 py-2 border border-1 fw-bold text-center total-count"></div>
+        </div>
+        <!--principal sign-->
+        <div class="row">
+            <div class="col-md-6 py-1 border border-1 fw-bold text-center">
+                <span class="p-sign"></span>
+                <span class="p-text"></span>
+            </div>
+            <div class="col-md-6 py-1 border border-1 fw-bold text-center">
+                <span class="d-sign"></span>
+                <span class="d-text"></span>
+            </div>           
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 address border border-1 p-2 text-center fw-bold"></div>
+        </div>
+
+    </div>
+
+
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="./js/invoice.js"></script>
+</body>
+</html>
